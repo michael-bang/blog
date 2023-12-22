@@ -23,19 +23,5 @@
       <guid>http://blog.4bang.dk/tags/event-driven-ansible/</guid>
       <description></description>
     </item>
-    <item>
-      <title>Hello</title>
-      <link>http://blog.4bang.dk/tags/hello/</link>
-      <pubDate>Sat, 27 Aug 2022 09:16:45 +0000</pubDate>
-      <guid>http://blog.4bang.dk/tags/hello/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>WhatsApp</title>
-      <link>http://blog.4bang.dk/tags/whatsapp/</link>
-      <pubDate>Sat, 27 Aug 2022 09:16:45 +0000</pubDate>
-      <guid>http://blog.4bang.dk/tags/whatsapp/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>

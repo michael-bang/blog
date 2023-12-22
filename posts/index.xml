@@ -16,12 +16,5 @@
       <guid>http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</guid>
       <description>Event-Driven Ansible(EDA) make it possible to run automation based on events instead of triggered manually or as part of other kinds of automation.</description>
     </item>
-    <item>
-      <title>Markdown Cheat Sheet</title>
-      <link>http://blog.4bang.dk/posts/markdown-cheat-sheet/</link>
-      <pubDate>Sat, 27 Aug 2022 09:16:45 +0000</pubDate>
-      <guid>http://blog.4bang.dk/posts/markdown-cheat-sheet/</guid>
-      <description>This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for basic syntax and extended syntax.</description>
-    </item>
   </channel>
 </rss>
