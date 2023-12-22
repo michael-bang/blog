@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Event-Driven Ansible on Michael Bangs blog</title>
+    <link>http://blog.4bang.dk/tags/event-driven-ansible/</link>
+    <description>Recent content in Event-Driven Ansible on Michael Bangs blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Fri, 22 Dec 2023 15:03:09 +0100</lastBuildDate>
+    <atom:link href="http://blog.4bang.dk/tags/event-driven-ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EDA: Create a source plugin for ntfy</title>
+      <link>http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</link>
+      <pubDate>Fri, 22 Dec 2023 15:03:09 +0100</pubDate>
+      <guid>http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</guid>
+      <description>Event-Driven Ansible(EDA) make it possible to run automation based on events instead of triggered manually or as part of other kinds of automation.</description>
+    </item>
+  </channel>
+</rss>

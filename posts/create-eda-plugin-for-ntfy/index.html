@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-US" class="scroll-smooth dark">
-  <head>
-	<meta name="generator" content="Hugo 0.121.1"><meta charset="UTF-8">
+  <head><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Michael Bangs blog</title>
-<meta name="description" content="Hello">
-<link rel="canonical" href="http://blog.4bang.dk/">
+<title>EDA: Create a source plugin for ntfy</title>
+<meta name="description" content="Event-Driven Ansible make it possible to run automation based on events. In this blog post I will explain how to create your own source plugin. My example is based on ntfy.sh.">
+<link rel="canonical" href="http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/">
 <link rel="robots" href="/robots.txt" />
 
 
@@ -44,7 +43,7 @@
      
     
     <li>
-      <a href="/" class=" active ">
+      <a href="/" class="">
         Home
       </a>
     </li>
@@ -126,84 +125,60 @@
 </script>
     </div>
   
-    <main id="content"> 
+    <main id="content">
 
- 
+<article class="flex flex-col gap-10">
+  <header class="flex flex-col gap-2">
+    <h2 class="title-large">EDA: Create a source plugin for ntfy</h2>
 
+    <div class="meta">
+      
+      <time datetime="2023-12-22 15:03:09 &#43;0100 CET" title='Fri, Dec 22, 2023, 3:03 PM CET'>
+        22/12/2023 - Estimated reading time: 1 minutes
+      </time>
 
-<div class="py-2 flex flex-col gap-1">
-  <h3 class="title-small">Latest posts</h3>
-</div>
+       
+       — 
+        
+          <a class="categories" href="/categories/ansible/" alt="Ansible">
+            Ansible
+          </a>
+         
+      
+    </div>
+  </header>
 
-<hr/>
-
-<section class="pb-10 flex flex-col gap-10">
-   
-    <article class="flex flex-col gap-1">
-  <h1>
-    <a href="http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/">EDA: Create a source plugin for ntfy</a>
-  </h1>
   
-  <span class="date">
-    <time datetime="2023-12-22 15:03:09 &#43;0100 CET" title='Fri, Dec 22, 2023, 3:03 PM CET'>
-      22/12/2023
-    </time>
-  </span>
 
-  <div class="description">
-    
-      Event-Driven Ansible make it possible to run automation based on events. In this blog post I will explain how to create your own source plugin. My example is based on ntfy.sh.
-    
-  </div>
-
-  <div class="mt-2">
-    <a class="read-more" href="http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/">
-      Read more
-      <span class="w-4 h-4 stroke-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-</svg>
-
-      </span>
-    </a>
-  </div>
-</article>
- 
-   
-    <article class="flex flex-col gap-1">
-  <h1>
-    <a href="http://blog.4bang.dk/posts/markdown-cheat-sheet/">Markdown Cheat Sheet</a>
-  </h1>
-  
-  <span class="date">
-    <time datetime="2022-08-27 09:16:45 &#43;0000 UTC" title='Sat, Aug 27, 2022, 9:16 AM UTC'>
-      27/08/2022
-    </time>
-  </span>
-
-  <div class="description">
-    
-      Markdown is a powerful tool for creating rich text using a plain text editor. This cheatsheet is a quick reference for Markdown syntax.
-    
-  </div>
-
-  <div class="mt-2">
-    <a class="read-more" href="http://blog.4bang.dk/posts/markdown-cheat-sheet/">
-      Read more
-      <span class="w-4 h-4 stroke-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-</svg>
-
-      </span>
-    </a>
-  </div>
-</article>
- 
-  
+  <section><p>Event-Driven Ansible(EDA) make it possible to run automation based on events instead of triggered manually or as part of other kinds of automation.</p>
+<p>EDA</p>
+<p>The ansible.eda collection comes with a number of source plugins.</p>
 </section>
 
+  
+    
+  
 
+    
+  
+
+
+  <footer>
+    
+      <div class="pb-14 taxonomy-list tags-list">
+      
+        <a href="/tags/event-driven-ansible/" alt="Event-Driven Ansible">
+          Event-Driven Ansible
+        </a>
+      
+        <a href="/tags/ansible/" alt="Ansible">
+          Ansible
+        </a>
+      
+      </div>
+    
+  </footer>
+</article>
 
 
     </main><footer class="pt-5 pb-10 grid gap-3 sm:grid-cols-2">
