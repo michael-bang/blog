@@ -16,6 +16,8 @@ Disallow: /posts/
 
 Disallow: /tags/
 
+Disallow: /about/
+
 Disallow: /categories/css/
 
 Disallow: /categories/javascript/
