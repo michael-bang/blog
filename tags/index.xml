@@ -7,19 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <lastBuildDate>Fri, 22 Dec 2023 15:03:09 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 30 Dec 2023 15:03:09 +0100</lastBuildDate>
     <atom:link href="https://blog.4bang.dk/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
       <link>https://blog.4bang.dk/tags/ansible/</link>
-      <pubDate>Fri, 22 Dec 2023 15:03:09 +0100</pubDate>
+      <pubDate>Sat, 30 Dec 2023 15:03:09 +0100</pubDate>
       <guid>https://blog.4bang.dk/tags/ansible/</guid>
       <description></description>
     </item>
     <item>
       <title>Event-Driven Ansible</title>
       <link>https://blog.4bang.dk/tags/event-driven-ansible/</link>
-      <pubDate>Fri, 22 Dec 2023 15:03:09 +0100</pubDate>
+      <pubDate>Sat, 30 Dec 2023 15:03:09 +0100</pubDate>
       <guid>https://blog.4bang.dk/tags/event-driven-ansible/</guid>
       <description></description>
     </item>
