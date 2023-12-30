@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JavaScript on Michael Bangs blog</title>
-    <link>http://blog.4bang.dk/categories/javascript/</link>
+    <link>https://blog.4bang.dk/categories/javascript/</link>
     <description>Recent content in JavaScript on Michael Bangs blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <atom:link href="http://blog.4bang.dk/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.4bang.dk/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

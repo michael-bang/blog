@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://blog.4bang.dk/</loc>
+    <loc>https://blog.4bang.dk/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/tags/ansible/</loc>
+    <loc>https://blog.4bang.dk/tags/ansible/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/categories/ansible/</loc>
+    <loc>https://blog.4bang.dk/categories/ansible/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/categories/</loc>
+    <loc>https://blog.4bang.dk/categories/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</loc>
+    <loc>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/tags/event-driven-ansible/</loc>
+    <loc>https://blog.4bang.dk/tags/event-driven-ansible/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/posts/</loc>
+    <loc>https://blog.4bang.dk/posts/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/tags/</loc>
+    <loc>https://blog.4bang.dk/tags/</loc>
     <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
-    <loc>http://blog.4bang.dk/categories/css/</loc>
+    <loc>https://blog.4bang.dk/categories/css/</loc>
   </url><url>
-    <loc>http://blog.4bang.dk/categories/javascript/</loc>
+    <loc>https://blog.4bang.dk/categories/javascript/</loc>
   </url><url>
-    <loc>http://blog.4bang.dk/categories/uncategories/</loc>
+    <loc>https://blog.4bang.dk/categories/uncategories/</loc>
   </url>
 </urlset>
