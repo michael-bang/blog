@@ -134,7 +134,7 @@
     <div class="meta">
       
       <time datetime="2023-12-22 15:03:09 &#43;0100 CET" title='Fri, Dec 22, 2023, 3:03 PM CET'>
-        22/12/2023 - Estimated reading time: 1 minutes
+        22/12/2023 - Estimated reading time: 5 minutes
       </time>
 
        
@@ -150,9 +150,108 @@
 
   
 
-  <section><p>Event-Driven Ansible(EDA) make it possible to run automation based on events instead of triggered manually or as part of other kinds of automation.</p>
-<p>EDA</p>
-<p>The ansible.eda collection comes with a number of source plugins.</p>
+  <section><p>In this blog post I&rsquo;m going to show you how to create your own source plugin for Event-Driven Ansible. I&rsquo;m using the Ntfy.sh service to show how you can build your own source plugin. You can find the full source code at my GitHub repository <a href="https://github.com/michael-bang/eda_ntfy">here</a> and you can download the source plugin from Ansible galaxy by running this command</p>
+<pre tabindex="0"><code>ansible-galaxy collection install michael_bang.eda_ntfy
+</code></pre><h2 id="introduction">Introduction</h2>
+<p>Ansible is a widely adopted tool to do IT automation. Ansible is traditionally activated from a command line or maybe scheduled. In some cases when used together with AWX or Ansible Controller then Ansible playbooks can also be used through a rest api making it possible to be used from other tools.
+Ansible is very flexible and can automate almost anything and there is a large community creating modules or collections.</p>
+<p>A lot of people and companies have created their own applications that can listen for events in their infrastructure so they can perform actions on these.
+Examples of this is listening for events on a Kafka topic, looking to see if a HTTP server stops providing the correct return code or looking into metrics to see if any thesholds has been breached and then call a piece of automation that can handle this situation.</p>
+<p>Event-Driven Ansible make it possible to remove these home grown solutions and use an easy framework to get the same result.</p>
+<h2 id="event-driven-ansible">Event-Driven Ansible</h2>
+<p>Event-Driven Ansible (EDA) - the ansible.eda collection - comes with a number of source plugins for that can be used to do things like monitor files, URLs, journald or Kafka to name a few. <a href="https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source">See here for the full list</a>.</p>
+<p>EDA is using rulebooks where Ansible is using playbooks. A rulebook consists of three things:</p>
+<ul>
+<li>Sources where events come from - this is where the source plugin is used</li>
+<li>Conditions - what event should trigger a piece of automation.</li>
+<li>Actions - what automation should be run.</li>
+</ul>
+<p>Here is an example of a rulebook</p>
+<pre tabindex="0"><code>- name: Listen for events from ntfy
+  hosts: all
+  sources:
+    - michael_bang.eda_ntfy.ntfy:
+        server: ntfy.sh
+        topic: mytopic
+  rules:
+    - name: Print Add Events
+      condition: event.payload.message == &#39;test&#39;
+      action:
+        debug:
+          msg: Message received
+</code></pre><p>This rulebook defines that we are using the michael_bang.eda_ntfy.ntfy source plugin to listen for events and we are parsing in two variables <strong>server</strong> and <strong>topic</strong>.
+The rulebook can consist of one or more rules. In this case there is only one and it is checking if the event includes the message test in the payload from the source plugin.</p>
+<p>The rulebook makes it easy to define what source plugin to be used and define the needed rules.</p>
+<p>You use the ansible-rulebook command to activate your rulebook. Where the ansible-playbook command just runs your playbook and exits afterwards the ansible-rulebook will continue to listen for events and not exit after the first event has been received.</p>
+<h3 id="installing-event-driven-ansible">Installing Event-Driven Ansible</h3>
+<p>This blog post will not go into details about how to install Event-Driven Ansible, but you can find a guide <a href="https://ansible.readthedocs.io/projects/rulebook/en/stable/installation.html">here</a>.</p>
+<h3 id="ntfysh">Ntfy.sh</h3>
+<p>I am using the <a href="https://ntfy.sh">ntfy.sh</a> push notification service as an example of an event system. Ntfy.sh is a push notification service that is simple to use. I would not recommend to use the free version in production.
+There are good examples of how to send and received notifications through their apis <a href="https://docs.ntfy.sh/">here</a>.</p>
+<p>Ntfy.sh uses topics where messages can be published and subscribed from.</p>
+<h3 id="writing-your-own-source-plugin">Writing your own source plugin</h3>
+<p>Source plugins are by default written in Python and it is therefore recommended to have a bit of knowledge about Python before creating your first EDA source plugin.</p>
+<h4 id="the-main-function">The main function</h4>
+<p>Your source plugin needs to have a main function defined like the one below.</p>
+<pre tabindex="0"><code>async def main(queue: asyncio.Queue, args: Dict[str, Any])
+</code></pre><p>The ansible-rulebook command will pass a <strong>queue</strong> and an <strong>args</strong> variable into your source plugin. The <strong>queue</strong> variable is used by your source plugin to add events back to the ansible-rulebook. The <strong>args</strong> variable will include a Dict with all of the variables that has been defined in the rule book. In the example below the <strong>server</strong> and the <strong>topic</strong> would be available through the <strong>args</strong> variable.</p>
+<pre tabindex="0"><code>sources:
+    - michael_bang.eda_ntfy.ntfy:
+        server: ntfy.sh
+        topic: mytopic
+</code></pre><p>I&rsquo;m storing the <strong>server</strong> and <strong>topic</strong> in local variables in my source plugin to build the url for the ntfy.sh api.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>server <span style="color:#ff79c6">=</span> args<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;server&#34;</span>)
+</span></span><span style="display:flex;"><span>topic <span style="color:#ff79c6">=</span> args<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;topic&#34;</span>)
+</span></span><span style="display:flex;"><span>url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;https://&#34;</span><span style="color:#ff79c6">+</span>server<span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#34;/&#34;</span><span style="color:#ff79c6">+</span>topic<span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#34;/json&#34;</span>
+</span></span></code></pre></div><h4 id="the-logic">The logic</h4>
+<p>Every source plugin needs some logic that sends an event to the ansible-rulebook queue when an event has happend. This will normally be implmented through some kind of loop.</p>
+<p>Remember to implement your logic non-blocking.</p>
+<p>In my case I use the url with aiohttp to connect to the ntfy.sh api and subscribe on the topic for events.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">async</span> <span style="color:#ff79c6">with</span> aiohttp<span style="color:#ff79c6">.</span>request(<span style="color:#f1fa8c">&#39;get&#39;</span>, url) <span style="color:#ff79c6">as</span> r:
+</span></span></code></pre></div><p>Then I pass every line (event) received and check that the line received is an event. Ntfy.sh also send keep alive messages and we don&rsquo;t want to pass them to the ansible-rulebook.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">async</span> <span style="color:#ff79c6">for</span> line <span style="color:#ff79c6">in</span> r<span style="color:#ff79c6">.</span>content:
+</span></span><span style="display:flex;"><span>    parsed <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>loads(line)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> parsed[<span style="color:#f1fa8c">&#34;event&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;message&#34;</span>:
+</span></span></code></pre></div><p>Then I create a structure with the data that I want to pass to the rulebook through the queue.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;payload&#34;</span>: parsed,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;meta&#34;</span>: {<span style="color:#f1fa8c">&#34;endpoint&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>, <span style="color:#f1fa8c">&#34;headers&#34;</span>: <span style="color:#f1fa8c">&#34;headers&#34;</span>},
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> queue<span style="color:#ff79c6">.</span>put(data)
+</span></span></code></pre></div><p>The main function will then look something like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">async</span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">main</span>(queue: asyncio<span style="color:#ff79c6">.</span>Queue, args: Dict[<span style="color:#8be9fd;font-style:italic">str</span>, Any]):
+</span></span><span style="display:flex;"><span>    server <span style="color:#ff79c6">=</span> args<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;server&#34;</span>)
+</span></span><span style="display:flex;"><span>    topic <span style="color:#ff79c6">=</span> args<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;topic&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;https://&#34;</span><span style="color:#ff79c6">+</span>server<span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#34;/&#34;</span><span style="color:#ff79c6">+</span>topic<span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#34;/json&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">async</span> <span style="color:#ff79c6">with</span> aiohttp<span style="color:#ff79c6">.</span>request(<span style="color:#f1fa8c">&#39;get&#39;</span>, url) <span style="color:#ff79c6">as</span> r:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">async</span> <span style="color:#ff79c6">for</span> line <span style="color:#ff79c6">in</span> r<span style="color:#ff79c6">.</span>content:
+</span></span><span style="display:flex;"><span>            parsed <span style="color:#ff79c6">=</span> json<span style="color:#ff79c6">.</span>loads(line)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> parsed[<span style="color:#f1fa8c">&#34;event&#34;</span>] <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;message&#34;</span>:
+</span></span><span style="display:flex;"><span>                data <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;payload&#34;</span>: parsed,
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#34;meta&#34;</span>: {<span style="color:#f1fa8c">&#34;endpoint&#34;</span>: <span style="color:#f1fa8c">&#34;test&#34;</span>, <span style="color:#f1fa8c">&#34;headers&#34;</span>: <span style="color:#f1fa8c">&#34;headers&#34;</span>},
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">await</span> queue<span style="color:#ff79c6">.</span>put(data)
+</span></span></code></pre></div><h4 id="testing-the-source-plugin">Testing the source plugin</h4>
+<p>It is good practice to make it possible to test the source plugin without the ansible-rulebook command.
+This can be done be adding</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span></code></pre></div><p>This will ensure that this part is called if the source plugin is called directly from the command line like a normal python program. In my case I read the server name and topic from environment variables. Then I use a MockQueue that is passed to the main function and I just print the event out when the MockQueue is called.</p>
+<p>Here is the code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    server <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>environ<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#39;NTFY_SERVER&#39;</span>)
+</span></span><span style="display:flex;"><span>    topic <span style="color:#ff79c6">=</span> os<span style="color:#ff79c6">.</span>environ<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#39;NTFY_TOPIC&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">class</span> <span style="color:#50fa7b">MockQueue</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">async</span> <span style="color:#ff79c6">def</span> <span style="color:#50fa7b">put</span>(self, event):
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(self)
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">print</span>(event)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    asyncio<span style="color:#ff79c6">.</span>run(main(MockQueue(), {<span style="color:#f1fa8c">&#34;server&#34;</span>: server, <span style="color:#f1fa8c">&#34;topic&#34;</span>: topic}))
+</span></span></code></pre></div><h2 id="next-steps">Next steps</h2>
+<p>Event source plugins can be added to collections for easy distribution. You can find a number of blogs and tutorials helping you with this.</p>
 </section>
 
   
@@ -201,6 +300,10 @@
     
     <li>    
       <a href="https://github.com/michael-bang" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </li>
+    
+    <li>    
+      <a href="https://www.linkedin.com/in/bangmichael/" target="_blank" rel="noopener noreferrer">Linkedin</a>
     </li>
     
     
