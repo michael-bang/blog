@@ -4,11 +4,18 @@
     <title>Ansible on Michael Bangs blog</title>
     <link>https://blog.4bang.dk/tags/ansible/</link>
     <description>Recent content in Ansible on Michael Bangs blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <lastBuildDate>Sat, 30 Dec 2023 15:03:09 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2024 09:58:18 +0200</lastBuildDate>
     <atom:link href="https://blog.4bang.dk/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding an external execution node to an AAP installation running in OpenShift</title>
+      <link>https://blog.4bang.dk/posts/aap-external-exe-node/</link>
+      <pubDate>Mon, 01 Jul 2024 09:58:18 +0200</pubDate>
+      <guid>https://blog.4bang.dk/posts/aap-external-exe-node/</guid>
+      <description>Introduction Many customers today have infrastructures with servers and equipment in many places. They have footprints on-premise and in the cloud and they may even have a large number of edge devices in places far away from where the core IT team is located.</description>
+    </item>
     <item>
       <title>EDA: Create a source plugin for ntfy</title>
       <link>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</link>
