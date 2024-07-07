@@ -258,8 +258,8 @@ The status of the execution node will be “installed” and there is an “Inst
 <p>Click next to the “Install Bundle” to download the tar ball that is needed for the installation on the RHEL machine.</p>
 <h2 id="prepare-the-rhel-machine">Prepare the RHEL machine</h2>
 <p>ou will need to add the repository for ansible in my case:</p>
-<p>sudo subscription-manager repos &ndash;enable ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms</p>
-<h3 id="install-ansible-core">Install ansible-core</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo subscription-manager repos --enable ansible-automation-platform-2.4-for-rhel-9-x86_64-rpms
+</span></span></code></pre></div><h3 id="install-ansible-core">Install ansible-core</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf install ansible-core
 </span></span></code></pre></div><p>You need to install the ansible.receptor collection:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ansible-galaxy collection install ansible.receptor
