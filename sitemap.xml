@@ -8,10 +8,10 @@
     <loc>https://blog.4bang.dk/</loc>
     <lastmod>2024-07-01T09:58:18+02:00</lastmod>
   </url><url>
-    <loc>https://blog.4bang.dk/tags/ansible/</loc>
+    <loc>https://blog.4bang.dk/categories/ansible/</loc>
     <lastmod>2024-07-01T09:58:18+02:00</lastmod>
   </url><url>
-    <loc>https://blog.4bang.dk/categories/ansible/</loc>
+    <loc>https://blog.4bang.dk/tags/ansible/</loc>
     <lastmod>2024-07-01T09:58:18+02:00</lastmod>
   </url><url>
     <loc>https://blog.4bang.dk/categories/</loc>
@@ -28,9 +28,6 @@
   </url><url>
     <loc>https://blog.4bang.dk/tags/event-driven-ansible/</loc>
     <lastmod>2023-12-30T15:03:09+01:00</lastmod>
-  </url><url>
-    <loc>https://blog.4bang.dk/post/</loc>
-    <lastmod>2023-12-22T15:03:09+01:00</lastmod>
   </url><url>
     <loc>https://blog.4bang.dk/about/</loc>
   </url><url>

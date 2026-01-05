@@ -14,7 +14,7 @@
       <link>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</link>
       <pubDate>Sat, 30 Dec 2023 15:03:09 +0100</pubDate>
       <guid>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</guid>
-      <description>In this blog post I&amp;rsquo;m going to show you how to create your own source plugin for Event-Driven Ansible.</description>
+      <description>&lt;p&gt;In this blog post I&amp;rsquo;m going to show you how to create your own source plugin for Event-Driven Ansible. I&amp;rsquo;m using the Ntfy.sh service to show how you can build your own source plugin. You can find the full source code at my GitHub repository &lt;a href=&#34;https://github.com/michael-bang/eda_ntfy&#34;&gt;here&lt;/a&gt; and you can download the source plugin from Ansible galaxy by running this command&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

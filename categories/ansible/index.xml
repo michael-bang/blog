@@ -14,14 +14,14 @@
       <link>https://blog.4bang.dk/posts/aap-external-exe-node/</link>
       <pubDate>Mon, 01 Jul 2024 09:58:18 +0200</pubDate>
       <guid>https://blog.4bang.dk/posts/aap-external-exe-node/</guid>
-      <description>Introduction Many customers today have infrastructures with servers and equipment in many places. They have footprints on-premise and in the cloud and they may even have a large number of edge devices in places far away from where the core IT team is located.</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Many customers today have infrastructures with servers and equipment in many places. They have footprints on-premise and in the cloud and they may even have a large number of edge devices in places far away from where the core IT team is located. Security is also more important than ever and this has resulted in segmentation of the network and regulations on direction of traffic. Automation is therefore important to keep up with changes and risks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>EDA: Create a source plugin for ntfy</title>
       <link>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</link>
       <pubDate>Sat, 30 Dec 2023 15:03:09 +0100</pubDate>
       <guid>https://blog.4bang.dk/posts/create-eda-plugin-for-ntfy/</guid>
-      <description>In this blog post I&amp;rsquo;m going to show you how to create your own source plugin for Event-Driven Ansible.</description>
+      <description>&lt;p&gt;In this blog post I&amp;rsquo;m going to show you how to create your own source plugin for Event-Driven Ansible. I&amp;rsquo;m using the Ntfy.sh service to show how you can build your own source plugin. You can find the full source code at my GitHub repository &lt;a href=&#34;https://github.com/michael-bang/eda_ntfy&#34;&gt;here&lt;/a&gt; and you can download the source plugin from Ansible galaxy by running this command&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

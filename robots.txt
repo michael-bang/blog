@@ -4,9 +4,9 @@ Disallow: /posts/aap-external-exe-node/
 
 Disallow: /
 
-Disallow: /tags/ansible/
-
 Disallow: /categories/ansible/
+
+Disallow: /tags/ansible/
 
 Disallow: /categories/
 
@@ -17,8 +17,6 @@ Disallow: /tags/
 Disallow: /posts/create-eda-plugin-for-ntfy/
 
 Disallow: /tags/event-driven-ansible/
-
-Disallow: /post/
 
 Disallow: /about/
 
