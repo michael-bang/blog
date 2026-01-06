@@ -151,10 +151,10 @@
   
 
   <section><h2 id="introduction">Introduction</h2>
-<p>Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing finding easy to get started with.
-Although LLM&rsquo;s are good at providing help information it can only do it on what it has been trained on. So if I want to use my chatbot to get the latest in sports, information about new movies or the weather it wouldn&rsquo;t be able to help. Agentic AI makes this possible and through the use of MCP (Model Context Protocol) it makes it easy to connect your solution with information that the LLM hasn&rsquo;t been trained on. This can be anything from a database with customer information to web pages, search engines or api endpoints. Agentic AI makes it possible to interact with the &ldquo;outside world&rdquo; and use your chatbot to make transactions for you.
-A lot of solutions are beginning to provide MCP solutions so that you can use your favorite LLM and agent capable solution to interact with these systems and not have to relay on these systems traditional interfaces (UI or CLI based).
-With the latest version of Ansible Automation Platform (AAP) you now have the posibility to interact with the platform through MCP.
+<p>Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing finding easy to get started with.</p>
+<p>Although LLM&rsquo;s are good at providing help information it can only do it on what it has been trained on. So if I want to use my chatbot to get the latest in sports, information about new movies or the weather it wouldn&rsquo;t be able to help. Agentic AI makes this possible and through the use of MCP (Model Context Protocol) it makes it easy to connect your solution with information that the LLM hasn&rsquo;t been trained on. This can be anything from a database with customer information to web pages, search engines or api endpoints. Agentic AI makes it possible to interact with the &ldquo;outside world&rdquo; and use your chatbot to make transactions for you.</p>
+<p>A lot of solutions are beginning to provide MCP solutions so that you can use your favorite LLM and agent capable solution to interact with these systems and not have to relay on these systems traditional interfaces (UI or CLI based).</p>
+<p>With the latest version of Ansible Automation Platform (AAP) you now have the posibility to interact with the platform through MCP.
 In this blog post I will show how you can setup this and use it from VSCode. There are five different areas that are exposed through MCP. I will focus on one of them, but the configuration is the same, but will provide access to different parts of the AAP platform.</p>
 <h2 id="requirements">Requirements</h2>
 <p>You need the following:</p>
@@ -162,7 +162,7 @@ In this blog post I will show how you can setup this and use it from VSCode. The
 <li>Ansible Automation Platform 2.6 (you can 60 days trail subscription here: <a href="https://www.redhat.com/en/technologies/management/ansible/trial)">https://www.redhat.com/en/technologies/management/ansible/trial)</a>. You need to install the MCP part which is at the time of writing in technical preview.</li>
 <li>A configured LLM that can be used with agents. I&rsquo;m using granite-3.3-8b-instruct</li>
 <li>VSCode, Claude or similair client that can provide the chat environment with agent capabilities</li>
-<li>Both the endpoint hosting the LLM and the AAP MCP endpoint should have valid certificates. Self signed is not recommended.</li>
+<li>Both the endpoint hosting the LLM and the AAP MCP should have valid certificates. Self signed is not recommended.</li>
 </ul>
 <h2 id="installing-aap-with-mcp-container-based">Installing AAP with MCP container based</h2>
 <p>Ansible Automation Platform can be installed in a number of different ways.</p>
