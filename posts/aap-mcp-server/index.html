@@ -175,14 +175,14 @@
 <p>You can find the official documentation here:</p>
 <p><a href="https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/containerized_installation/deploying-ansible-mcp-server">https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/containerized_installation/deploying-ansible-mcp-server</a></p>
 <h3 id="install-the-mcp-component-in-aap">Install the MCP component in AAP</h3>
-<p>Installation of the MCP component in AAP require you to add the following to your AAP installation inventory file when you do the installation in the first place or for adding the MCP components (see the documentation on how to run the AAP installation):</p>
+<p>Installation of the MCP component in AAP require you to add the following to your AAP installation inventory file either when you do the installation in the first place or for adding the MCP component later (see the documentation on how to run the AAP installation):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[ansiblemcp]
 </span></span><span style="display:flex;"><span>your-fqdn # name of the host where the ansiblemcp component should be installed
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>[all:vars]
 </span></span><span style="display:flex;"><span># Ansible
 </span></span><span style="display:flex;"><span>mcp_allow_write_operations=true
-</span></span></code></pre></div><p>The mcp_allow_write operations makes you decide if the mcp component will make it possible to make changes to the platform like running a playbook through the mcp server. You can always decide whether the user accessing AAP through MCP is allowed to do write operations.</p>
+</span></span></code></pre></div><p>The mcp_allow_write operations makes you decide if the mcp component will make it possible to make changes to the platform like running a job template through the mcp server. You can always decide whether the user accessing AAP through MCP is allowed to do write operations.</p>
 <p>After the installation the MCP component will run on port 8448.</p>
 <h3 id="configure-a-user-to-be-used-through-mcp-on-aap">Configure a user to be used through MCP on AAP</h3>
 <p>You can define any number of users in AAP that can be used with the MCP component. The users access to job templates, inventories etc. will corespond to what the MCP client can get access to.</p>
