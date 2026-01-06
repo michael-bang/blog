@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth dark">
+  <head><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ansible Automation Platform MCP server</title>
+<meta name="description" content="AI is a hot topic and in this blog post I will show how you can use Ansible Automation Platform from VSCode in an Agentic maner.">
+<link rel="canonical" href="https://blog.4bang.dk/posts/aap-mcp-server/">
+<link rel="robots" href="/robots.txt" />
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+
+<link rel="stylesheet" href="https://blog.4bang.dk/css/app.min.06a8dc288c6d88ff17f05d386e3d22aac712db4a820de6ea3d4092649f8828fd.css" integrity="sha256-BqjcKIxtiP8X8F04bj0iqscS20qCDebqPUCSZJ+IKP0=" /></head>
+
+  <body class="max-w-screen-md mx-auto">
+    <div class="header">
+      <header class="flex flex-col sm:flex-row items-center gap-5 sm:gap-10 pt-16 py-12">
+   
+
+
+<div class="flex-none w-20 h-20 rounded-full overflow-hidden">
+  <a href="https://blog.4bang.dk/">
+    <img
+      srcset="/img/michael_hu_3757617abd109f35.jpg 80w"
+      src="/img/michael.jpg"
+      width="460"
+      height="460"
+      alt="Michael Bangs blog"
+    />
+  </a>
+</div>
+
+  
+  <div class="flex flex-col gap-5">
+    <a href="https://blog.4bang.dk/">
+  <h1 id="site-title">Michael Bangs blog</h1>
+</a>
+ 
+    <nav>
+  <ul>
+     
+    
+    <li>
+      <a href="/" class="">
+        Home
+      </a>
+    </li>
+    
+    <li>
+      <a href="/about" class="">
+        About me
+      </a>
+    </li>
+    
+    <li>
+      <a href="/categories" class="">
+        Categories
+      </a>
+    </li>
+    
+    <li>
+      <a href="/tags" class="">
+        Tags
+      </a>
+    </li>
+    
+  </ul>
+</nav>
+
+  </div>
+</header>
+
+      <button class="toggle-theme" aria-label="Toggle Theme" title="Toggle Theme" onclick="toggleTheme()">
+  <span class="theme-icon light"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+</svg> </span>
+  <span class="theme-icon dark"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+</svg> </span>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const theme = localStorage.getItem('theme');
+
+    if (!theme || theme === 'light') {
+      setTheme('light');
+    } else {
+      setTheme(theme);
+    }
+  });
+
+  function setTheme(theme) {
+    const html = document.querySelector('html');
+    localStorage.setItem('theme', theme);
+
+    if (theme === 'light') {
+      if (html.classList.contains('dark')) {
+        document.querySelector('html').classList.remove('dark');
+      }
+
+      document.querySelector('.theme-icon.light').style.display = 'none';
+      document.querySelector('.theme-icon.dark').style.display = 'block';
+    } else {
+      if (!html.classList.contains('dark')) {
+        document.querySelector('html').classList.add('dark');
+      }
+
+      document.querySelector('.theme-icon.dark').style.display = 'none';
+      document.querySelector('.theme-icon.light').style.display = 'block';
+    }
+  }
+
+  function toggleTheme() {
+    const theme = localStorage.getItem('theme');
+
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
+</script>
+    </div>
+  
+    <main id="content">
+
+<article class="flex flex-col gap-10">
+  <header class="flex flex-col gap-2">
+    <h2 class="title-large">Ansible Automation Platform MCP server</h2>
+
+    <div class="meta">
+      
+      <time datetime="2026-01-05 14:33:23 &#43;0100 CET" title='Mon, Jan 5, 2026, 2:33 PM CET'>
+        05/01/2026 - Estimated reading time: 6 minutes
+      </time>
+
+       
+       — 
+        
+          <a class="categories" href="/categories/ansible/" alt="Ansible">
+            Ansible
+          </a>
+         
+      
+    </div>
+  </header>
+
+  
+
+  <section><h2 id="introduction">Introduction</h2>
+<p>Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing finding easy to get started with.
+Although LLM&rsquo;s are good at providing help information it can only do it on what it has been trained on. So if I want to use my chatbot to get the latest in sports, information about new movies or the weather it wouldn&rsquo;t be able to help. Agentic AI makes this possible and through the use of MCP (Model Context Protocol) it makes it easy to connect your solution with information that the LLM hasn&rsquo;t been trained on. This can be anything from a database with customer information to web pages, search engines or api endpoints. Agentic AI makes it possible to interact with the &ldquo;outside world&rdquo; and use your chatbot to make transactions for you.
+A lot of solutions are beginning to provide MCP solutions so that you can use your favorite LLM and agent capable solution to interact with these systems and not have to relay on these systems traditional interfaces (UI or CLI based).
+With the latest version of Ansible Automation Platform (AAP) you now have the posibility to interact with the platform through MCP.
+In this blog post I will show how you can setup this and use it from VSCode. There are five different areas that are exposed through MCP. I will focus on one of them, but the configuration is the same, but will provide access to different parts of the AAP platform.</p>
+<h2 id="requirements">Requirements</h2>
+<p>You need the following:</p>
+<ul>
+<li>Ansible Automation Platform 2.6 (you can 60 days trail subscription here: <a href="https://www.redhat.com/en/technologies/management/ansible/trial)">https://www.redhat.com/en/technologies/management/ansible/trial)</a>. You need to install the MCP part which is at the time of writing in technical preview.</li>
+<li>A configured LLM that can be used with agents. I&rsquo;m using granite-3.3-8b-instruct</li>
+<li>VSCode, Claude or similair client that can provide the chat environment with agent capabilities</li>
+<li>Both the endpoint hosting the LLM and the AAP MCP endpoint should have valid certificates. Self signed is not recommended.</li>
+</ul>
+<h2 id="installing-aap-with-mcp-container-based">Installing AAP with MCP container based</h2>
+<p>Ansible Automation Platform can be installed in a number of different ways.</p>
+<ul>
+<li>RPM based on RHEL</li>
+<li>Container based on RHEL using Podman</li>
+<li>Operator based on OpenShift Container Platform</li>
+</ul>
+<p>The latter two includes the MCP server functionality. I have used the container based installation in this blog post.</p>
+<p>You can find the official documentation here:</p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/containerized_installation/deploying-ansible-mcp-server">https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6/html/containerized_installation/deploying-ansible-mcp-server</a></p>
+<h3 id="install-the-mcp-component-in-aap">Install the MCP component in AAP</h3>
+<p>Installation of the MCP component in AAP require you to add the following to your AAP installation inventory file when you do the installation in the first place or for adding the MCP components (see the documentation on how to run the AAP installation):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>[ansiblemcp]
+</span></span><span style="display:flex;"><span>your-fqdn # name of the host where the ansiblemcp component should be installed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[all:vars]
+</span></span><span style="display:flex;"><span># Ansible
+</span></span><span style="display:flex;"><span>mcp_allow_write_operations=true
+</span></span></code></pre></div><p>The mcp_allow_write operations makes you decide if the mcp component will make it possible to make changes to the platform like running a playbook through the mcp server. You can always decide whether the user accessing AAP through MCP is allowed to do write operations.</p>
+<p>After the installation the MCP component will run on port 8448.</p>
+<h3 id="configure-a-user-to-be-used-through-mcp-on-aap">Configure a user to be used through MCP on AAP</h3>
+<p>You can define any number of users in AAP that can be used with the MCP component. The users access to job templates, inventories etc. will corespond to what the MCP client can get access to.</p>
+<p>Create a new user in AAP or decide on an existing user that you want to use with MCP.</p>
+<p>Log into AAP with that user.</p>
+<p>Open the users information in Access Management. Under the API Token create a new API token.</p>
+
+
+
+
+
+<figure class='mb-5'>
+  <img src="/posts/aap-mcp-server/userinfo.png"  alt="User information on AAP"  width="1316" height="406" />
+  
+  
+</figure>
+<p>On the &ldquo;Create API Token&rdquo; page provide an optional description for the use of the token and a scope. The scope tells if this token can be used to make changes to the platform through this user token.</p>
+
+
+
+
+
+<figure class='mb-5'>
+  <img src="/posts/aap-mcp-server/usertoken.png"  alt="User information on AAP"  width="2348" height="602" />
+  
+  
+</figure>
+<p>A write scope will not make it possible to do changes to the AAP platform if you set the mcp_allow_write_operations to false when you did the installation.</p>
+<h2 id="configure-the-client-to-use-the-mcp-tools-provided-through-the-aap-mcp-component">Configure the client to use the MCP tools provided through the AAP MCP component</h2>
+<p>The AAP MCP component provides 6 different toolsets that can be accessed through different uris</p>
+<table>
+  <thead>
+      <tr>
+          <th>Toolset</th>
+          <th>Description</th>
+          <th>Uri</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Job management</td>
+          <td>Tools to list and work with job templates</td>
+          <td>/job_management/mcp</td>
+      </tr>
+      <tr>
+          <td>Inventory management</td>
+          <td>Tools to query and work with inventories</td>
+          <td>/inventory_management/mcp</td>
+      </tr>
+      <tr>
+          <td>System monitoring</td>
+          <td>Tools for retrieving job logs and checking the health of the environment</td>
+          <td>/system_monitoring/mcp</td>
+      </tr>
+      <tr>
+          <td>User management</td>
+          <td>Tools to work with users and access</td>
+          <td>/user_management/mcp</td>
+      </tr>
+      <tr>
+          <td>Security/compliance</td>
+          <td>Tools that enable the AI agent to act as a security operator</td>
+          <td>/security_compliance/mcp</td>
+      </tr>
+      <tr>
+          <td>Platform configuration</td>
+          <td>Tools to tune the platform</td>
+          <td>/platform_configuration/mcp</td>
+      </tr>
+  </tbody>
+</table>
+<p>I&rsquo;m using the Continue plugin in VSCode. In order to get this to work you need to configure the LLM model that you want to use. I have used the ibm-granite model and configured that as a local configuration.</p>
+<p>Access to the MCP server can be configured in different ways. I chose to create a mcp.json file in my ~/.continue/mcpServers.
+The configuration should look something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;mcpServers&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;aapmcp&#34;: {
+</span></span><span style="display:flex;"><span>      &#34;type&#34;: &#34;http&#34;,
+</span></span><span style="display:flex;"><span>      &#34;url&#34;: &#34;https://&lt;your fqdn&gt;/job_management/mcp&#34;, # Url to the toolset you want to use
+</span></span><span style="display:flex;"><span>      &#34;headers&#34;: {
+</span></span><span style="display:flex;"><span>        &#34;Authorization&#34;: &#34;Bearer &lt;YOUR TOKEN&gt;&#34;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="example">Example</h2>
+<p>Now that I have configured the MCP component, configured a LLM model in the Continue plugin and defines the MCP toolset I want to use let&rsquo;s see some examples.</p>
+<p>In the following chat prompt I first ask it to use the aapmcp tool (the name defined in the mcp.json file) and then list all available job templates that the user can see.</p>
+
+
+
+
+
+<figure class='mb-5'>
+  <img src="/posts/aap-mcp-server/example1.png"  alt="Get list of job templates viewable by the mcp user"  width="1070" height="664" />
+  
+  
+</figure>
+<p>You can see that the user has access to 5 job templates on my test AAP setup.</p>
+<p>Then in the same session (using the same MCP toolset) I ask it to run the ping job template.</p>
+
+
+
+
+
+<figure class='mb-5'>
+  <img src="/posts/aap-mcp-server/example2.png"  alt="Run the ping job template"  width="1696" height="408" />
+  
+  
+</figure>
+<p>An instance of the ping job template has now been started and has told me that the job id is 36.</p>
+<p>I can now use this job id to get the status of the job.</p>
+
+
+
+
+
+<figure class='mb-5'>
+  <img src="/posts/aap-mcp-server/example3.png"  alt="Get the status of the job id 36"  width="1698" height="482" />
+  
+  
+</figure>
+<h2 id="conclusion">Conclusion</h2>
+<p>Configuring the MCP component in AAP and getting access to it is fairly simple and you have seen how you can use a prompt to interact with the AAP platform.</p>
+<p>When and why would you use this instead of using the traditional AAP APIs or the GUI ?</p>
+<p>A growing number of developers and users are turning to LLMs and MCP servers to do their development and here AAP automation can be used within the same context
+I also believe that troubleshoting could be done through activating job templates from a prompt and then use the LLM to compare outputs or combine it with other information that can be pulled through other MCP tools.</p>
+</section>
+
+  
+    
+  
+
+    
+  
+
+
+  <footer>
+    
+      <div class="pb-14 taxonomy-list tags-list">
+      
+        <a href="/tags/ansible/" alt="Ansible">
+          Ansible
+        </a>
+      
+      </div>
+    
+  </footer>
+</article>
+
+
+    </main><footer class="pt-5 pb-10 grid gap-3 sm:grid-cols-2">
+    <div class="text-xs font-semibold text-gray-500 order-2 sm:order-1">
+  © 2026 —
+  <a href="https://blog.4bang.dk/">Michael Bangs blog</a> 
+  <span class="font-normal">with</span>
+  <a
+    href="https://github.com/nixentric/Lowkey-Hugo-Theme"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Lowkey
+  </a>
+</div>
+
+    <div class="order-1 sm:order-2">
+  <ul class="flex sm:justify-end gap-5">
+    
+    
+    <li>    
+      <a href="https://github.com/michael-bang" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </li>
+    
+    <li>    
+      <a href="https://www.linkedin.com/in/bangmichael/" target="_blank" rel="noopener noreferrer">Linkedin</a>
+    </li>
+    
+    
+  </ul>
+</div>
+
+</footer></body>
+</html>

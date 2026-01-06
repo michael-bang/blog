@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>{year}</copyright>
-    <lastBuildDate>Mon, 01 Jul 2024 09:58:18 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 05 Jan 2026 14:33:23 +0100</lastBuildDate>
     <atom:link href="https://blog.4bang.dk/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible Automation Platform MCP server</title>
+      <link>https://blog.4bang.dk/posts/aap-mcp-server/</link>
+      <pubDate>Mon, 05 Jan 2026 14:33:23 +0100</pubDate>
+      <guid>https://blog.4bang.dk/posts/aap-mcp-server/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing finding easy to get started with.&#xA;Although LLM&amp;rsquo;s are good at providing help information it can only do it on what it has been trained on. So if I want to use my chatbot to get the latest in sports, information about new movies or the weather it wouldn&amp;rsquo;t be able to help. Agentic AI makes this possible and through the use of MCP (Model Context Protocol) it makes it easy to connect your solution with information that the LLM hasn&amp;rsquo;t been trained on. This can be anything from a database with customer information to web pages, search engines or api endpoints. Agentic AI makes it possible to interact with the &amp;ldquo;outside world&amp;rdquo; and use your chatbot to make transactions for you.&#xA;A lot of solutions are beginning to provide MCP solutions so that you can use your favorite LLM and agent capable solution to interact with these systems and not have to relay on these systems traditional interfaces (UI or CLI based).&#xA;With the latest version of Ansible Automation Platform (AAP) you now have the posibility to interact with the platform through MCP.&#xA;In this blog post I will show how you can setup this and use it from VSCode. There are five different areas that are exposed through MCP. I will focus on one of them, but the configuration is the same, but will provide access to different parts of the AAP platform.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Adding an external execution node to an AAP installation running in OpenShift</title>
       <link>https://blog.4bang.dk/posts/aap-external-exe-node/</link>
