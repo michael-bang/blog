@@ -14,7 +14,7 @@
       <link>https://blog.4bang.dk/posts/aap-mcp-server/</link>
       <pubDate>Mon, 05 Jan 2026 14:33:23 +0100</pubDate>
       <guid>https://blog.4bang.dk/posts/aap-mcp-server/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing finding easy to get started with.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Generative AI has been a hot topic this past year and we have seen a large range of people taking this new technology in to their everyday life. We are seeing students using ChatGPT, Gemini and the likes to help them do their studies both for good and bad. We are seeing companies that are implementing chatbots to be the first interaction with customers and we are seeing people that are not tech savy utilizing it and finding it easy to get started with.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Adding an external execution node to an AAP installation running in OpenShift</title>
